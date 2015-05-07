@@ -3,7 +3,7 @@ A filter bar, similar to a UISegmentedControl. Written in Swift, and uses autola
 
 Getting Started:
 ---
-Add `FilterBar.swift` to your project.
+Add `FilterBar.swift` to your project. CocoaPods coming soon.
 
 Using the FilterBar:
 ---
@@ -45,7 +45,7 @@ Will cause the filter bar to have a red tint. Personally, I think a black or whi
 
 Interface Builder Support:
 ---
-FilterBar supports autolayout.
+FilterBar supports Interface Builder in several ways. You can set the color of the bar, and FilterBar will render a preview in interface builder.
 
 License:
 ---
