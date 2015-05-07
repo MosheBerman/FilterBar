@@ -13,6 +13,7 @@ import UIKit
     //  MARK: - Selected Segment Index
     
     @IBInspectable var selectedSegmentIndex : NSInteger = 0 {
+        
         didSet {
             
             //
@@ -26,6 +27,8 @@ import UIKit
             if selectedSegmentIndex < 0 {
                 selectedSegmentIndex = 0
             }
+            
+            self.sendActionsForControlEvents(.ValueChanged)
         }
     }
     
