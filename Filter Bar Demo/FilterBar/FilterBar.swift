@@ -12,15 +12,34 @@ import UIKit
     
     //  MARK: - Selected Segment Index
     
-    @IBInspectable var selectedSegmentIndex : NSInteger = 0
+    @IBInspectable var selectedSegmentIndex : NSInteger = 0 {
+        didSet {
+            
+            //
+            //  Ensure that we can't go out of bounds
+            //
+            
+            if selectedSegmentIndex >= self.titles.count {
+                selectedSegmentIndex = self.titles.count - 1
+            }
+            
+            if selectedSegmentIndex < 0 {
+                selectedSegmentIndex = 0
+            }
+        }
+    }
+    
+    //  MARK: - Border Color
+    
+    @IBInspectable var primaryColor : UIColor = UIColor.whiteColor()
+    
     
     //  MARK: - Buttons and Titles
     
     var buttons : Array<UIButton> = Array()
     
-    var titles : Array<String> = ["Button A", "Button B", "Button C"] {
+    var titles : Array<String> = [] {
         didSet {
-            self.selectedSegmentIndex = 0
             self.layoutButtons()
         }
     }
@@ -30,40 +49,24 @@ import UIKit
     let buttonFont : UIFont? = UIFont(name: "Avenir-Light", size: 14)
     let buttonSelectedFont : UIFont? = UIFont(name: "Avenir-Heavy", size: 16)
     
-    //  MARK: - Image
-    
-    let image : UIImage = UIImage(named: "NotchedBackground")!
-    let imageView : UIImageView = UIImageView()
-    
     //
     //  MARK: - Initializers
     //
     
     init() {
-        self.imageView.image = self.image
+        
+        self.titles = ["Button A", "Button B", "Button C"]
         super.init(frame: CGRectZero)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.imageView.image = self.image
+        self.titles = ["Button A", "Button B", "Button C"]
         super.init(coder: aDecoder)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
     }
     
     override init(frame: CGRect) {
-        self.imageView.image = self.image
-        super.init(frame: frame)
-        setTranslatesAutoresizingMaskIntoConstraints(false)
-    }
-    //
-    //  MARK: - Prepare for interface builder.
-    //
-    
-    override func prepareForInterfaceBuilder() {
-        setTranslatesAutoresizingMaskIntoConstraints(false)
-        self.installBackground()
-        self.layoutButtons()
+        self.titles = ["Button A", "Button B", "Button C"]
+        super.init(frame: CGRectZero)
     }
     
     //
@@ -72,21 +75,13 @@ import UIKit
     
     override func intrinsicContentSize() -> CGSize {
         
-        var intrinsicWidth : CGFloat = 0.0
+        var intrinsicWidth : CGFloat = CGRectGetWidth(UIScreen.mainScreen().bounds) + 2.0
         
         if let width : CGFloat = self.superview?.bounds.width {
-            intrinsicWidth = width
+            intrinsicWidth = width + 2.0
         }
         
         return CGSizeMake(intrinsicWidth, 44.0)
-    }
-    
-    //
-    //  MARK: - Require autolayout
-    //
-    
-    override class func requiresConstraintBasedLayout() -> Bool {
-        return true
     }
     
     //
@@ -108,8 +103,6 @@ import UIKit
         self.buttons.map { $0.removeFromSuperview() }
         self.buttons.removeAll(keepCapacity: false)
         
-        self.imageView.removeFromSuperview()
-        
         //  If there are titles, create buttons and display them.
         
         for title in self.titles {
@@ -122,7 +115,7 @@ import UIKit
             
             //  Set the button title & colors
             button.setTitle(buttonTitle, forState: .Normal)
-            button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            button.setTitleColor(self.primaryColor, forState: .Normal)
             button.backgroundColor = UIColor.clearColor()
             button.titleLabel?.font = self.buttonFont
             
@@ -154,13 +147,13 @@ import UIKit
             //  Install the constraints
             self.addConstraints([h, w, x, y])
         }
+
         
-        // Provide proper styling for the button
-        if let newButton : UIButton = self.buttons.first {
-            newButton.titleLabel?.font = self.buttonSelectedFont
-            
-            newButton.layer.borderColor = UIColor.whiteColor().CGColor
-        }
+        //  Style the appropriate button.
+        
+        let newButton : UIButton = self.buttons[self.selectedSegmentIndex]
+        
+        newButton.titleLabel?.font = self.buttonSelectedFont
     }
     
     //
@@ -168,7 +161,6 @@ import UIKit
     //
     
     func buttonWasTapped(button:UIButton) {
-        
         
         //  Grab the button's title label
         
@@ -191,31 +183,6 @@ import UIKit
         
         //  Send the control event to listeners
         self.sendActionsForControlEvents(.TouchUpInside)
-    }
-    
-    //
-    //  MARK: - Position the Selection Indicator
-    //
-    
-    //
-    //  Install a background
-    //
-    //  :param: animated Should we animate the marker into place?
-    //
-    
-    func installBackground() {
-        
-        //  Ensure autoresizing doesn't interfere...
-        self.imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        //  Ensure we have the correct constraints
-        var x : NSLayoutConstraint = NSLayoutConstraint(item: self.imageView, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        var y: NSLayoutConstraint =  NSLayoutConstraint(item: self.imageView, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
-        
-        self.addSubview(self.imageView)
-        
-        //  Animate the change
-        self.addConstraints([x, y])
     }
     
     //
@@ -287,6 +254,19 @@ import UIKit
     }
     
     //
+    //
+    //
+    
+    override func willMoveToSuperview(newSuperview: UIView?) {
+        super.willMoveToSuperview(newSuperview)
+        
+        self.backgroundColor = self.primaryColor.colorWithAlphaComponent(0.1)
+        
+        self.layer.borderColor = self.primaryColor.CGColor
+        self.layer.borderWidth = 0.5
+    }
+    
+    //
     //  MARK: - View Lifecycle
     //
     
@@ -294,8 +274,18 @@ import UIKit
         
         super.didMoveToSuperview()
         
-        //  Some coloring
-        self.backgroundColor = UIColor.clearColor()
+        if let superview = self.superview
+        {
+        
+            let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0);
+            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2)
+            
+            superview.addConstraints([centerX, width])
+        }
+        else
+        {
+            NSLog("Failed to find a superview. Weird.")
+        }
         
         //  Lay out the buttons
         self.setNeedsLayout()
