@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-568" y="272"/>
         </scene>
-        <!--View Controller-->
+        <!--Filter Bar Demo-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Filter_Bar_Demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -61,7 +61,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="E1y-t5-aL1"/>
+                    <navigationItem key="navigationItem" title="Filter Bar Demo" id="E1y-t5-aL1"/>
                     <connections>
                         <outlet property="displayLabel" destination="Toc-rc-7qC" id="aF0-HP-oJY"/>
                         <outlet property="filterBar" destination="ywr-FL-1Xa" id="6QM-Lo-OlD"/>
