@@ -13,6 +13,7 @@
 		46E922421AFBFBD7008C9491 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46E922411AFBFBD7008C9491 /* Images.xcassets */; };
 		46E922451AFBFBD7008C9491 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E922431AFBFBD7008C9491 /* LaunchScreen.xib */; };
 		46E922511AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E922501AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift */; };
+		46E9225E1AFBFC1B008C9491 /* FilterBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9225D1AFBFC1B008C9491 /* FilterBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		46E9224A1AFBFBD7008C9491 /* Filter Bar DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Filter Bar DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E9224F1AFBFBD7008C9491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46E922501AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter_Bar_DemoTests.swift; sourceTree = "<group>"; };
+		46E9225D1AFBFC1B008C9491 /* FilterBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				46E9223A1AFBFBD7008C9491 /* AppDelegate.swift */,
 				46E9223C1AFBFBD7008C9491 /* ViewController.swift */,
+				46E9225C1AFBFC1B008C9491 /* FilterBar */,
 				46E9223E1AFBFBD7008C9491 /* Main.storyboard */,
 				46E922411AFBFBD7008C9491 /* Images.xcassets */,
 				46E922431AFBFBD7008C9491 /* LaunchScreen.xib */,
@@ -110,6 +113,14 @@
 				46E9224F1AFBFBD7008C9491 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		46E9225C1AFBFC1B008C9491 /* FilterBar */ = {
+			isa = PBXGroup;
+			children = (
+				46E9225D1AFBFC1B008C9491 /* FilterBar.swift */,
+			);
+			path = FilterBar;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -214,6 +225,7 @@
 			files = (
 				46E9223D1AFBFBD7008C9491 /* ViewController.swift in Sources */,
 				46E9223B1AFBFBD7008C9491 /* AppDelegate.swift in Sources */,
+				46E9225E1AFBFC1B008C9491 /* FilterBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
