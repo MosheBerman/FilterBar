@@ -32,9 +32,17 @@ import UIKit
         }
     }
     
-    //  MARK: - Border Color
+    //  MARK: - Colors
     
     @IBInspectable var color : UIColor = UIColor.blackColor() {
+        didSet {
+            applyColor()
+        }
+    }
+    
+    // MARK: - Border Color
+    
+    @IBInspectable var borderColor : UIColor = UIColor.blackColor() {
         didSet {
             applyColor()
         }
@@ -326,8 +334,9 @@ import UIKit
     
     func applyColor() {
         
-        self.backgroundColor = self.color.colorWithAlphaComponent(0.1)
-        self.layer.borderColor = self.color.CGColor
+        self.backgroundColor = self.color.colorWithAlphaComponent(0.10)
+        
+        self.layer.borderColor = self.borderColor.colorWithAlphaComponent(0.5).CGColor;
         self.layer.borderWidth = 0.5
     }
 }
