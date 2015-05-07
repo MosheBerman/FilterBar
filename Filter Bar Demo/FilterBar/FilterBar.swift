@@ -219,7 +219,7 @@ import UIKit
     
     func buttonWidth() -> CGFloat {
         
-        var width = CGRectGetWidth(UIScreen.mainScreen().bounds) / CGFloat(self.titles.count)
+        var width = CGRectGetWidth(self.bounds) / CGFloat(self.titles.count)
         
         if self.titles.count == 0 {
             width = CGRectGetWidth(self.bounds)
@@ -274,6 +274,10 @@ import UIKit
         
         super.didMoveToSuperview()
         
+        //
+        //  Ensure we're snapped to the edges of the superview
+        //
+        
         if let superview = self.superview
         {
         
@@ -287,7 +291,10 @@ import UIKit
             NSLog("Failed to find a superview. Weird.")
         }
         
+        //
         //  Lay out the buttons
+        //
+        
         self.setNeedsLayout()
     }
     
