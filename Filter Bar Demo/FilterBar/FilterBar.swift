@@ -272,7 +272,7 @@ import UIKit
     }
     
     //
-    //
+    //  Apply the colors before moving to the superview.
     //
     
     override func willMoveToSuperview(newSuperview: UIView?) {
