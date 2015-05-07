@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
@@ -21,12 +20,28 @@
                                 <rect key="frame" x="-1" y="28" width="602" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toc-rc-7qC">
+                                <rect key="frame" x="256" y="289" width="88" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="vEE-Wg-KTX"/>
+                                    <constraint firstAttribute="width" constant="88" id="wPn-Ps-LHg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="ywr-FL-1Xa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="dza-0Z-rEM"/>
+                            <constraint firstAttribute="centerX" secondItem="Toc-rc-7qC" secondAttribute="centerX" id="g3J-QA-dAi"/>
+                            <constraint firstAttribute="centerY" secondItem="Toc-rc-7qC" secondAttribute="centerY" id="gUZ-sX-95d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="displayLabel" destination="Toc-rc-7qC" id="aF0-HP-oJY"/>
+                        <outlet property="filterBar" destination="ywr-FL-1Xa" id="6QM-Lo-OlD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
