@@ -19,6 +19,12 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         filterBar.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        
+        //  This sets the titles of the filter bar.
+        filterBar.titles = ["Apples", "Bananas", "Cherries"]
+        
+        //  This sets the color of the filter bar
+        filterBar.color = UIColor.redColor()
     }
 
     override func didReceiveMemoryWarning() {
