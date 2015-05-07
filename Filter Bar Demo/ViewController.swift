@@ -24,7 +24,18 @@ class ViewController: UIViewController {
         filterBar.titles = ["Apples", "Bananas", "Cherries"]
         
         //  This sets the color of the filter bar
-        filterBar.color = UIColor.redColor()
+        filterBar.color = UIColor.whiteColor()
+        
+        //
+        //  This is some extra styling.
+        //
+        
+        //  Style the navigation controller.
+        self.navigationController?.navigationBar.translucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
+        
+        //  Set the bakground color of the view.
+        self.view.backgroundColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
     }
 
     override func didReceiveMemoryWarning() {
