@@ -36,6 +36,8 @@ class ViewController: UIViewController {
         
         //  Set the bakground color of the view.
         self.view.backgroundColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
     }
 
     override func didReceiveMemoryWarning() {
