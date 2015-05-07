@@ -31,7 +31,11 @@ import UIKit
     
     //  MARK: - Border Color
     
-    @IBInspectable var primaryColor : UIColor = UIColor.whiteColor()
+    @IBInspectable var color : UIColor = UIColor.blackColor() {
+        didSet {
+            applyColor()
+        }
+    }
     
     
     //  MARK: - Buttons and Titles
@@ -56,16 +60,19 @@ import UIKit
     init() {
         
         self.titles = ["Button A", "Button B", "Button C"]
+        self.color = UIColor.blackColor()
         super.init(frame: CGRectZero)
     }
     
     required init(coder aDecoder: NSCoder) {
         self.titles = ["Button A", "Button B", "Button C"]
+        self.color = UIColor.blackColor()
         super.init(coder: aDecoder)
     }
     
     override init(frame: CGRect) {
         self.titles = ["Button A", "Button B", "Button C"]
+        self.color = UIColor.blackColor()
         super.init(frame: CGRectZero)
     }
     
@@ -115,7 +122,7 @@ import UIKit
             
             //  Set the button title & colors
             button.setTitle(buttonTitle, forState: .Normal)
-            button.setTitleColor(self.primaryColor, forState: .Normal)
+            button.setTitleColor(self.color, forState: .Normal)
             button.backgroundColor = UIColor.clearColor()
             button.titleLabel?.font = self.buttonFont
             
@@ -260,10 +267,7 @@ import UIKit
     override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
         
-        self.backgroundColor = self.primaryColor.colorWithAlphaComponent(0.1)
-        
-        self.layer.borderColor = self.primaryColor.CGColor
-        self.layer.borderWidth = 0.5
+        self.applyColor()
     }
     
     //
@@ -307,5 +311,20 @@ import UIKit
         self.layoutButtons()
         
         super.layoutSubviews()
+    }
+    
+    //
+    //  MARK: - Apply the Primary Color
+    //
+    
+    //
+    //  This method applies the primary color to the filter bar.
+    //
+    
+    func applyColor() {
+        
+        self.backgroundColor = self.color.colorWithAlphaComponent(0.1)
+        self.layer.borderColor = self.color.CGColor
+        self.layer.borderWidth = 0.5
     }
 }
