@@ -48,7 +48,10 @@ class ViewController: UIViewController {
         
         let filter : FilterBar = sender as! FilterBar
         
-        self.displayLabel.text = String(format: "Segment: %i", self.filterBar.selectedSegmentIndex)
+        let index : NSInteger = self.filterBar.selectedSegmentIndex
+        let string : String = filter.titles[index]
+        
+        self.displayLabel.text = String(format: "Segment %i : %@", index, string)
         
     }
 
