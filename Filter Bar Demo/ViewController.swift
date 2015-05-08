@@ -49,7 +49,7 @@ class ViewController: UIViewController {
         
         //  Color the filter bar
         filter.color = UIColor.whiteColor()
-        filter.borderColor = UIColor.whiteColor()
+        filter.borderColor = UIColor.blackColor()
         
         //  Install the filter
         self.view.addSubview(filter)
