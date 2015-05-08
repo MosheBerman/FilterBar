@@ -1,51 +1,78 @@
+![Promo](https://github.com/MosheBerman/FilterBar/raw/master/Promo.png)
+
 # FilterBar
 A filter bar, similar to a UISegmentedControl. Written in Swift, and uses autolayout.
+
+FilterBar provides first-class interface builder support, including simulated segment selection, and the ability to tint the FilterBar right from Interface Builder. 
 
 Getting Started:
 ---
 Add `FilterBar.swift` to your project. CocoaPods coming soon.
 
-Using the FilterBar:
+Creating a FilterBar:
 ---
-You can create a filter bar in code, or using Interface Builder. FilterBar provides first-class interface builder support, including simulated buttons, and the ability to tint the FilterBar right from Interface Builder.
+It's simple: 
 
-Position the FilterBar:
----
-FilterBar uses an intrinsic size and a pair of layout constraints to ensure that it remains centered in and stretched across its superview. You only need to provide a Y position constraint for it.
+        let filter : FilterBar = FilterBar()
+        
+That's it. We'll use our `filter` for the remainder of this README.
 
-
-Setting the Titles:
+Setting the Segment Titles:
 ---
 To choose what titles are shown on the filter bar, set the `titles` property of the filter bar. FilterBar will then trigger a layout update and automatically generate the segments. For example: 
 
-    filterBar.titles = ["Apples", "Bananas", "Cherries"]
+    filter.titles = ["Albus", "Bathilda", "Charlie", "Harry"]    // Harry Potter!
+    
+Positioning the FilterBar:
+---
+FilterBar uses an intrinsic size and a pair of layout constraints to ensure that it it always centered in and stretched across its superview. You only need to provide a Y position constraint for it.
 
-This will cause the filter bar to display three buttons with Apples, Bananas, and Cherries as the titles, respectively.
+
+        //  Create a constraint that attaches the filter bar to the top layout guide.
+        let topConstraint : NSLayoutConstraint = NSLayoutConstraint(item: filter, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+        
+        //	Add the constraint to the filter view.
+        self.view.addConstraint(topConstraint)
+        
+Every FilterBar issued from the factory calls `setTranslatesAutoresizingMaskIntoConstraints` on itself so you don't have to.
+
+Coloring the FilterBar:
+--- 
+FilterBar contains two properties for controlling appearance. The `color` property sets the text color and the background color. 
+
+        //  Color the filter bar
+        filter.color = UIColor.whiteColor()
+        
+This will cause the filter bar to have a white. Personally, I think a black or white color works well for most cases, because the background color will bleed through. FilterBar applies the color with an opacity of 0.1 as the `backgroundColor`.
+        
+        //	The border is going to be black.
+        filter.borderColor = UIColor.blackColor()
+
+The FilterBar `borderColor` is set to 0.5 opacity before being applied, to approximate how translucent navigation bars shade themselves. 
+
+Getting Events:
+---
+FilterBar is a subclass of `UIControl`, and uses the `.ValueChanged` event to handle changes.
+
+    filter.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+
+This assumes that you have a handler called `segmentChanged:` that looks something like this:
+
+    func segmentChanged(sender: AnyObject) {
+    	//	Handle changes here
+    }
 
 Checking which Segment is Selected:
 ---
 Use the `selectedSegmentIndex` property.
 
-Getting Events:
----
-FilterBar is a subclass of `UIControl`, so you can either wire up an IBAction to "Value Changed" or use the following line of code:
-
-    filterBar.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
-
-This assumes that you have a handler called `segmentChanged` and that your filter bar is called `filterBar`.
-
-Coloring the Filter Bar:
---- 
-Use the `color` property. For example:
-
-    filterBar.color = UIColor.redColor()
-
-Will cause the filter bar to have a red tint. Personally, I think a black or white color works well for most cases, because the background color will bleed through.
-
-
 Interface Builder Support:
 ---
 FilterBar supports Interface Builder in several ways. You can set the color of the bar, and FilterBar will render a preview in interface builder.
+
+![IB](https://github.com/MosheBerman/FilterBar/raw/master/InterfaceBuilder.png)
+
+To use FilterBar with Interface Builder, drag a UIView out on to your view (controller) and change the class to FilterBar. 
 
 License:
 ---
