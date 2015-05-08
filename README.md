@@ -1,13 +1,18 @@
 ![Promo](https://github.com/MosheBerman/FilterBar/raw/master/Promo.png)
 
 # FilterBar
-A filter bar, similar to a UISegmentedControl. Written in Swift, and uses autolayout.
 
-FilterBar provides first-class interface builder support, including simulated segment selection, and the ability to tint the FilterBar right from Interface Builder. 
+FilterBar is a fancy implementation of UISegmentedControl that is designed to look good under navigation bars, search controllers, and really anywhere else in your app. 
+
+It's designed to stretch across its superview and handle segment layout nicely.
 
 Getting Started:
 ---
-Add `FilterBar.swift` to your project. CocoaPods coming soon.
+Add `FilterBar.swift` to your project. 
+
+Or, with CocoaPods:
+
+    pod 'FilterBar' -> '1.0.5'
 
 Creating a FilterBar:
 ---
