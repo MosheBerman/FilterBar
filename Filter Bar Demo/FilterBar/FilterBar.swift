@@ -88,7 +88,76 @@ import UIKit
     }
     
     //
-    //  MARK: - Intrinsic Content Size
+    //  MARK: - View Lifecycle
+    //
+    
+    //
+    //  Before moving to the superview, we want a few thins
+    //  to happen.
+    //
+    //  1. Turn off autoresizing masks.
+    //  2. Apply the color settings.
+    //
+    
+    override func willMoveToSuperview(newSuperview: UIView?) {
+        super.willMoveToSuperview(newSuperview)
+        self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.applyColor()
+    }
+    
+    //
+    //  After we've moved to the superview,
+    //  we need to
+    //
+    
+    override func didMoveToSuperview() {
+        
+        super.didMoveToSuperview()
+        
+        //
+        //  Ensure we're snapped to the edges of the superview
+        //
+        
+        if let superview = self.superview
+        {
+            
+            let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0);
+            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2)
+            
+            superview.addConstraints([centerX, width])
+        }
+        else
+        {
+            NSLog("Failed to find a superview. Weird.")
+        }
+        
+        //
+        //  Lay out the buttons
+        //
+        
+        self.setNeedsLayout()
+    }
+    
+    //
+    //  MARK: - Layout Subviews
+    //
+    
+    override func layoutSubviews() {
+        
+        self.layoutButtons()
+        
+        super.layoutSubviews()
+    }
+    
+    //
+    //  MARK: - Autolayout Support
+    //
+    
+    //  
+    //  This method returns the intrinsic content size.
+    //
+    //  A FilterBar is always 44 points tall and stretches 
+    //  just beyond either side of its superview.
     //
     
     override func intrinsicContentSize() -> CGSize {
@@ -103,7 +172,15 @@ import UIKit
     }
     
     //
-    //  MARK: - Lay out the buttons
+    //  This method ensures that the FilterBar is always used with autolayout.
+    //
+    
+    override class func requiresConstraintBasedLayout() -> Bool  {
+        return true
+    }
+    
+    //
+    //  MARK: - Display the buttons
     //
     
     //
@@ -186,6 +263,8 @@ import UIKit
             
             //  Read out the title text and use it to get the segment
             let title : String = titleLabel.text!
+            
+            //  Set the index - this will cause the .ValueChanged to fire.
             self.selectedSegmentIndex = self.indexForButtonTitle(title)
             
             for b : UIButton in self.buttons {
@@ -198,9 +277,6 @@ import UIKit
                 }
             }
         }
-        
-        //  Send the control event to listeners
-        self.sendActionsForControlEvents(.TouchUpInside)
     }
     
     //
@@ -269,59 +345,6 @@ import UIKit
         }
         
         return constraint
-    }
-    
-    //
-    //  Apply the colors before moving to the superview.
-    //
-    
-    override func willMoveToSuperview(newSuperview: UIView?) {
-        super.willMoveToSuperview(newSuperview)
-        
-        self.applyColor()
-    }
-    
-    //
-    //  MARK: - View Lifecycle
-    //
-    
-    override func didMoveToSuperview() {
-        
-        super.didMoveToSuperview()
-        
-        //
-        //  Ensure we're snapped to the edges of the superview
-        //
-        
-        if let superview = self.superview
-        {
-        
-            let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0);
-            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2)
-            
-            superview.addConstraints([centerX, width])
-        }
-        else
-        {
-            NSLog("Failed to find a superview. Weird.")
-        }
-        
-        //
-        //  Lay out the buttons
-        //
-        
-        self.setNeedsLayout()
-    }
-    
-    //
-    //  MARK: - Layout Subviews
-    //
-    
-    override func layoutSubviews() {
-        
-        self.layoutButtons()
-        
-        super.layoutSubviews()
     }
     
     //
