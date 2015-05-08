@@ -55,9 +55,8 @@ class ViewController: UIViewController {
         self.view.addSubview(filter)
         
         //  Add a positioning constraint
-        let topConstraint : NSLayoutConstraint = NSLayoutConstraint(item: filter, attribute: .Top, relatedBy: .Equal, toItem: self.filterBar, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+        let topConstraint : NSLayoutConstraint = NSLayoutConstraint(item: filter, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
         self.view.addConstraint(topConstraint)
-        filter.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         // Handle event changes
         filter.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
