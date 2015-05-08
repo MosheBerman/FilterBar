@@ -42,8 +42,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywr-FL-1Xa" customClass="FilterBar" customModule="Filter_Bar_Demo" customModuleProvider="target">
-                                <rect key="frame" x="-1" y="72" width="602" height="44"/>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywr-FL-1Xa" customClass="FilterBar" customModule="Filter_Bar_Demo" customModuleProvider="target">
+                                <rect key="frame" x="-1" y="324" width="602" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
@@ -55,7 +55,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Toc-rc-7qC" secondAttribute="trailing" constant="32" id="FTl-3J-qD0"/>
-                            <constraint firstItem="ywr-FL-1Xa" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="dza-0Z-rEM"/>
+                            <constraint firstItem="ywr-FL-1Xa" firstAttribute="top" secondItem="Toc-rc-7qC" secondAttribute="bottom" constant="8" id="LR0-3x-dpz"/>
                             <constraint firstAttribute="centerX" secondItem="Toc-rc-7qC" secondAttribute="centerX" id="g3J-QA-dAi"/>
                             <constraint firstAttribute="centerY" secondItem="Toc-rc-7qC" secondAttribute="centerY" id="gUZ-sX-95d"/>
                             <constraint firstItem="Toc-rc-7qC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="gaC-A8-xO9"/>
