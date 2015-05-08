@@ -14,6 +14,8 @@ Or, with CocoaPods:
 
     pod 'FilterBar' -> '1.0.5'
 
+FilterBar uses Swift, so Cocoapods requires iOS 8.0 or higher.
+
 Creating a FilterBar:
 ---
 It's simple: 
