@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "FilterBar"
-  s.version      = "1.0.5"
+  s.version      = "1.0.6"
   s.summary      = "A filter bar, similar to a UISegmentedControl."
   s.description  = <<-DESC
 	       A filter bar, similar to a UISegmentedControl. Written in Swift, and uses autolayout.
