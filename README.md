@@ -12,7 +12,7 @@ Add `FilterBar.swift` to your project.
 
 Or, with CocoaPods:
 
-    pod 'FilterBar' -> '1.0.5'
+    pod 'FilterBar', '~>1.0.5'
 
 FilterBar uses Swift, so Cocoapods requires iOS 8.0 or higher.
 
