@@ -153,10 +153,10 @@ import UIKit
     //  MARK: - Autolayout Support
     //
     
-    //  
+    //
     //  This method returns the intrinsic content size.
     //
-    //  A FilterBar is always 44 points tall and stretches 
+    //  A FilterBar is always 44 points tall and stretches
     //  just beyond either side of its superview.
     //
     
@@ -242,7 +242,7 @@ import UIKit
             //  Install the constraints
             self.addConstraints([h, w, x, y])
         }
-
+        
         
         //  Style the appropriate button.
         
@@ -257,24 +257,17 @@ import UIKit
     
     func buttonWasTapped(button:UIButton) {
         
-        //  Grab the button's title label
         
-        if let titleLabel = button.titleLabel {
-            
-            //  Read out the title text and use it to get the segment
-            let title : String = titleLabel.text!
-            
-            //  Set the index - this will cause the .ValueChanged to fire.
-            self.selectedSegmentIndex = self.indexForButtonTitle(title)
-            
-            for b : UIButton in self.buttons {
-                if b.titleLabel?.text! == title {
-                    b.titleLabel?.font = self.buttonSelectedFont
-                }
-                else
-                {
-                    b.titleLabel?.font = self.buttonFont
-                }
+        //  Set the index - this will cause the .ValueChanged to fire.
+        self.selectedSegmentIndex = self.indexForButton(button)
+        
+        for b : UIButton in self.buttons {
+            if b.isEqual(button) {
+                b.titleLabel?.font = self.buttonSelectedFont
+            }
+            else
+            {
+                b.titleLabel?.font = self.buttonFont
             }
         }
     }
@@ -284,19 +277,19 @@ import UIKit
     //
     
     //
-    //  Find the index of the button that was tapped
+    //  Find the index of the button that was tapped.
     //
-    //  :param: title The title that we want to convert into an index.
+    //  :param: title The button that we want to convert into an index.
     //
     //  :returns: An integer representing the index.
     //
     
-    func indexForButtonTitle(title: String) -> NSInteger {
+    func indexForButton(button: UIButton) -> NSInteger {
         
         var index : NSInteger = -1
         
         for var i = 0; i < self.titles.count; ++i {
-            if title == self.titles[i] {
+            if button.isEqual(self.buttons[i]) {
                 index = i
                 break
             }
@@ -304,6 +297,7 @@ import UIKit
         
         return index
     }
+    
     
     //
     //  Calculate the appropriate width for the buttons.
