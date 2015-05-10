@@ -1,8 +1,8 @@
 //
 //  KSRFilterBar.swift
-//  Kosher GPS
+//  Filter Bar Demo
 //
-//  Created by Moshe Berman on 1/28/15.
+//  Created by Moshe Berman on 5/7/15.
 //  Copyright (c) 2015 Moshe. All rights reserved.
 //
 
@@ -61,8 +61,8 @@ import UIKit
     
     //  MARK: - Fonts
     
-    let buttonFont : UIFont? = UIFont(name: "Avenir-Light", size: 14)
-    let buttonSelectedFont : UIFont? = UIFont(name: "Avenir-Heavy", size: 16)
+    let buttonFont : UIFont? = UIFont.systemFontOfSize(14.0)
+    let buttonSelectedFont : UIFont? = UIFont.boldSystemFontOfSize(16.0)
     
     //
     //  MARK: - Initializers
