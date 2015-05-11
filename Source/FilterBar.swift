@@ -10,6 +10,13 @@ import UIKit
 
 @IBDesignable class FilterBar : UIControl {
     
+    //
+    //  An overlay view for handling colors
+    //
+    
+    private let _colorOverlay : UIView = UIView();
+    private let _whiteOverlay : UIView = UIView();
+    
     //  MARK: - Selected Segment Index
     
     @IBInspectable var selectedSegmentIndex : NSInteger = 0 {
@@ -32,13 +39,29 @@ import UIKit
         }
     }
     
-    //  MARK: - Colors
+    //  MARK: - Tint Color
     
-    @IBInspectable var color : UIColor = UIColor.blackColor() {
+    @IBInspectable override var tintColor : UIColor! {
         didSet {
             applyColor()
         }
     }
+    
+    //  MARK: - Bar Color
+    
+    @IBInspectable var barTintColor : UIColor = UIColor.whiteColor() {
+        didSet {
+            applyColor()
+        }
+    }
+    
+    //  MARK: - Translucent
+    @IBInspectable var translucent : Bool = true {
+        didSet {
+            applyColor()
+        }
+    }
+    
     
     // MARK: - Border Color
     
@@ -48,6 +71,7 @@ import UIKit
         }
     }
     
+
     
     //  MARK: - Buttons and Titles
     
@@ -71,20 +95,23 @@ import UIKit
     init() {
         
         self.titles = ["Button A", "Button B", "Button C"]
-        self.color = UIColor.blackColor()
         super.init(frame: CGRectZero)
+        self.tintColor = UIColor.blackColor()
+        self.barTintColor = UIColor.whiteColor()
     }
     
     required init(coder aDecoder: NSCoder) {
         self.titles = ["Button A", "Button B", "Button C"]
-        self.color = UIColor.blackColor()
         super.init(coder: aDecoder)
+        self.tintColor = UIColor.blackColor()
+        self.barTintColor = UIColor.whiteColor()
     }
     
     override init(frame: CGRect) {
         self.titles = ["Button A", "Button B", "Button C"]
-        self.color = UIColor.blackColor()
         super.init(frame: CGRectZero)
+        self.tintColor = UIColor.blackColor()
+        self.barTintColor = UIColor.whiteColor()
     }
     
     //
@@ -92,7 +119,7 @@ import UIKit
     //
     
     //
-    //  Before moving to the superview, we want a few thins
+    //  Before moving to the superview, we want a few things
     //  to happen.
     //
     //  1. Turn off autoresizing masks.
@@ -101,7 +128,10 @@ import UIKit
     
     override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
+        
         self.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self._colorOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
         self.applyColor()
     }
     
@@ -122,7 +152,7 @@ import UIKit
         {
             
             let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0);
-            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2)
+            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2.0) // 2 Points wider than the parent
             
             superview.addConstraints([centerX, width])
         }
@@ -143,10 +173,82 @@ import UIKit
     //
     
     override func layoutSubviews() {
+
+        //
+        //  Install a white overlay
+        //
+        
+        let containsWhiteView : Bool = contains(self.subviews as! Array<UIView>, self._whiteOverlay)
+        
+        if !containsWhiteView {
+            if self.translucent {
+                self.installWhiteView()
+            }
+            else {
+                self.removeConstraints(_whiteOverlay.constraints())
+                _whiteOverlay.removeFromSuperview()
+            }
+        }
+        
+        //
+        //  Add the color view
+        //
+        
+        let containsColorView : Bool = contains(self.subviews as! Array<UIView>, self._colorOverlay)
+        
+        if !containsColorView {
+            if self.translucent {
+                self.installColorView()
+            }
+            else {
+                self.removeConstraints(_colorOverlay.constraints())
+                _colorOverlay.removeFromSuperview()
+            }
+        }
+        
+        //
+        //  Layout the buttons
+        //
         
         self.layoutButtons()
+    }
+    
+    //
+    //  MARK: - Install the color view.
+    //
+    
+    func installColorView() {
         
-        super.layoutSubviews()
+        self.addSubview(self._colorOverlay)
+        
+        self._colorOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
+        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
+        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: -1.0)
+        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        self.addConstraints([x, y, h, w])
+        
+    }
+    
+    //
+    //  MARK: - Install the white overlay view.
+    //
+    
+    func installWhiteView() {
+        
+        self.addSubview(self._whiteOverlay)
+        
+        self._whiteOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
+        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
+        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: -1.0)
+        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        
+        self.addConstraints([x, y, h, w])
+        
     }
     
     //
@@ -210,7 +312,7 @@ import UIKit
             
             //  Set the button title & colors
             button.setTitle(buttonTitle, forState: .Normal)
-            button.setTitleColor(self.color, forState: .Normal)
+            button.setTitleColor(self.tintColor, forState: .Normal)
             button.backgroundColor = UIColor.clearColor()
             button.titleLabel?.font = self.buttonFont
             
@@ -346,14 +448,42 @@ import UIKit
     //
     
     //
-    //  This method applies the primary color to the filter bar.
+    //  This method applies the border and background colors.
+    //
+    //  The button colors are applied when we generate the buttons.
     //
     
     func applyColor() {
         
-        self.backgroundColor = self.color.colorWithAlphaComponent(0.10)
+        //
+        //  Apply the border colors.
+        //
         
-        self.layer.borderColor = self.borderColor.colorWithAlphaComponent(0.5).CGColor;
+        
+        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])
+        
+        self.layer.borderColor = color
         self.layer.borderWidth = 0.5
+        
+        //
+        //  Apply the background colors.
+        //
+        
+        if self.translucent == false {
+            
+            self._colorOverlay.backgroundColor = UIColor.clearColor();
+            self.backgroundColor = self.barTintColor
+        }
+            
+        else {
+            self._colorOverlay.alpha = 0.85
+            self._colorOverlay.backgroundColor = self.barTintColor
+            self._colorOverlay.opaque = false
+            self._whiteOverlay.backgroundColor = UIColor(white: 0.97, alpha: 0.5)
+            self._whiteOverlay.opaque = false
+            self.opaque = false
+        }
+        
     }
 }
