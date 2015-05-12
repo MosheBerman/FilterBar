@@ -12,6 +12,6 @@ Pod::Spec.new do |s|
   s.license 	   = 'MIT'
   s.platform     = :ios, '8.0'
   s.source       = { :git => "https://github.com/MosheBerman/FilterBar.git", :tag => s.version.to_s} 
-  s.source_files  = 'Classes', 'Filter\ Bar\ Demo/FilterBar/FilterBar.swift'
+  s.source_files  = 'Classes', 'Source/FilterBar.swift'
   s.requires_arc = true
 end
