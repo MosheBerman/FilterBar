@@ -60,6 +60,9 @@ class ViewController: UIViewController {
         //  Tint the filter bar
         filter.barTintColor = blue
         
+        //  Enable translucency
+        filter.translucent = true
+        
         //  Install the filter
         self.view.addSubview(filter)
         
