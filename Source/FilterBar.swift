@@ -10,14 +10,7 @@ import UIKit
 
 @IBDesignable class FilterBar : UIControl {
     
-    //
-    //  An overlay view for handling colors
-    //
-    
-    private let _colorOverlay : UIView = UIView();
-    private let _whiteOverlay : UIView = UIView();
-    
-    //  MARK: - Selected Segment Index
+    //  MARK: - Segments
     
     @IBInspectable var selectedSegmentIndex : NSInteger = 0 {
         
@@ -39,32 +32,11 @@ import UIKit
         }
     }
     
-    //  MARK: - Tint Color
-    
-    @IBInspectable override var tintColor : UIColor! {
-        didSet {
-            applyColor()
-        }
-    }
-    
-    //  MARK: - Bar Color
-    
-    @IBInspectable var barTintColor : UIColor = UIColor.whiteColor() {
-        didSet {
-            applyColor()
-        }
-    }
-    
-    //  MARK: - Translucent
-    @IBInspectable var translucent : Bool = true {
-        didSet {
-            applyColor()
-        }
-    }
-    
-    //  MARK: - Buttons and Titles
+    //  Buttons
     
     var buttons : Array<UIButton> = Array()
+    
+    //  Titles
     
     var titles : Array<String> = [] {
         didSet {
@@ -72,10 +44,45 @@ import UIKit
         }
     }
     
-    //  MARK: - Fonts
+    //
+    //  MARK: - Appearance
+    //
+    
+    //  Fonts 
     
     let buttonFont : UIFont? = UIFont.systemFontOfSize(14.0)
     let buttonSelectedFont : UIFont? = UIFont.boldSystemFontOfSize(16.0)
+    
+    //  Tint Color
+    
+    @IBInspectable override var tintColor : UIColor! {
+        didSet {
+            applyColor()
+        }
+    }
+    
+    //  Bar Color
+    
+    @IBInspectable var barTintColor : UIColor = UIColor.whiteColor() {
+        didSet {
+            applyColor()
+        }
+    }
+    
+    //  Translucency
+    
+    @IBInspectable var translucent : Bool = true {
+        didSet {
+            applyColor()
+        }
+    }
+    
+    //
+    //  MARK: - Internal Overlays
+    //
+    
+    private let _colorOverlay : UIView = UIView()
+    private let _whiteOverlay : UIView = UIView()
     
     //
     //  MARK: - Initializers
@@ -88,8 +95,8 @@ import UIKit
     }
     
     required init(coder aDecoder: NSCoder) {
-       super.init(coder: aDecoder)
-
+        super.init(coder: aDecoder)
+        
         self.initializeDefaults()
     }
     
@@ -108,6 +115,14 @@ import UIKit
         self.tintColor = UIColor.blackColor()
         self.barTintColor = UIColor.whiteColor()
         self.translucent = true
+        
+        
+        //  Border colors
+        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])
+        
+        self.layer.borderColor = color
+        self.layer.borderWidth = 0.5
     }
     
     //
@@ -133,7 +148,7 @@ import UIKit
     
     //
     //  After we've moved to the superview,
-    //  we need to position the FilterBar in 
+    //  we need to position the FilterBar in
     //  the superview.
     //
     
@@ -166,11 +181,11 @@ import UIKit
     }
     
     //
-    //  MARK: - Layout Subviews
+    //  MARK: - Layout
     //
     
     override func layoutSubviews() {
-
+        
         //
         //  Install a white overlay
         //
@@ -179,7 +194,7 @@ import UIKit
         
         if !containsWhiteView {
             if self.translucent {
-                self.installWhiteView()
+                self.layoutWhiteOverlayView()
             }
             else {
                 self.removeConstraints(_whiteOverlay.constraints())
@@ -195,7 +210,7 @@ import UIKit
         
         if !containsColorView {
             if self.translucent {
-                self.installColorView()
+                self.layoutColorOverlayView()
             }
             else {
                 self.removeConstraints(_colorOverlay.constraints())
@@ -211,10 +226,11 @@ import UIKit
     }
     
     //
-    //  MARK: - Install the color view.
+    //  Install the color overlay view into the view hierarchy
+    //  and lay it out using autolayout.
     //
     
-    func installColorView() {
+    func layoutColorOverlayView() {
         
         self.addSubview(self._colorOverlay)
         
@@ -230,10 +246,11 @@ import UIKit
     }
     
     //
-    //  MARK: - Install the white overlay view.
+    //  Install the white overlay view into the view hierarchy
+    //  and lay it out using autolayout.
     //
     
-    func installWhiteView() {
+    func layoutWhiteOverlayView() {
         
         self.addSubview(self._whiteOverlay)
         
@@ -247,40 +264,6 @@ import UIKit
         self.addConstraints([x, y, h, w])
         
     }
-    
-    //
-    //  MARK: - Autolayout Support
-    //
-    
-    //
-    //  This method returns the intrinsic content size.
-    //
-    //  A FilterBar is always 44 points tall and stretches
-    //  just beyond either side of its superview.
-    //
-    
-    override func intrinsicContentSize() -> CGSize {
-        
-        var intrinsicWidth : CGFloat = CGRectGetWidth(UIScreen.mainScreen().bounds) + 2.0
-        
-        if let width : CGFloat = self.superview?.bounds.width {
-            intrinsicWidth = width + 2.0
-        }
-        
-        return CGSizeMake(intrinsicWidth, 44.0)
-    }
-    
-    //
-    //  This method ensures that the FilterBar is always used with autolayout.
-    //
-    
-    override class func requiresConstraintBasedLayout() -> Bool  {
-        return true
-    }
-    
-    //
-    //  MARK: - Display the buttons
-    //
     
     //
     //  This function handles the layout of the buttons
@@ -351,7 +334,42 @@ import UIKit
     }
     
     //
-    //  MARK: - Button Taps
+    //  MARK: - Autolayout Support
+    //
+    
+    //
+    //  This method returns the intrinsic content size.
+    //
+    //  A FilterBar is always 44 points tall and stretches
+    //  just beyond either side of its superview.
+    //
+    
+    override func intrinsicContentSize() -> CGSize {
+        
+        var intrinsicWidth : CGFloat = CGRectGetWidth(UIScreen.mainScreen().bounds) + 2.0
+        
+        if let width : CGFloat = self.superview?.bounds.width {
+            intrinsicWidth = width + 2.0
+        }
+        
+        return CGSizeMake(intrinsicWidth, 44.0)
+    }
+    
+    //
+    //  This method ensures that the FilterBar is always used with autolayout.
+    //
+    
+    override class func requiresConstraintBasedLayout() -> Bool  {
+        return true
+    }
+    
+    //
+    //  MARK: - Handling Segment Taps
+    //
+    
+    //
+    //  This function changes the selected segment
+    //  index and updates the buttons.
     //
     
     func buttonWasTapped(button:UIButton) {
@@ -441,44 +459,32 @@ import UIKit
     }
     
     //
-    //  MARK: - Apply the Primary Color
-    //
-    
-    //
-    //  This method applies the border and background colors.
+    //  This method applies the tint and barTint colors.
     //
     //  The button colors are applied when we generate the buttons.
     //
     
     func applyColor() {
         
-        //
-        //  Apply the border colors.
-        //
-        
-        
-        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()
-        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])
-        
-        self.layer.borderColor = color
-        self.layer.borderWidth = 0.5
-        
-        //
-        //  Apply the background colors.
-        //
-        
+        //  If the bar is solid, apply the background color and cler the colorOverlay.
         if self.translucent == false {
             
-            self._colorOverlay.backgroundColor = UIColor.clearColor();
+            self._colorOverlay.backgroundColor = UIColor.clearColor()
+            self._whiteOverlay.backgroundColor = UIColor.clearColor()
+            
             self.backgroundColor = self.barTintColor
+            self.opaque = true
         }
             
+            //  Else, appropriately tint the color and white overlays and make the background clear.
         else {
             self._colorOverlay.alpha = 0.85
             self._colorOverlay.backgroundColor = self.barTintColor
             self._colorOverlay.opaque = false
+            
             self._whiteOverlay.backgroundColor = UIColor(white: 0.97, alpha: 0.5)
             self._whiteOverlay.opaque = false
+            
             self.opaque = false
             self.backgroundColor = UIColor.clearColor()
         }
