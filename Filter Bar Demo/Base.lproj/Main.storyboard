@@ -47,18 +47,13 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
-                                        <integer key="value" value="0"/>
+                                        <integer key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="color">
-                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="translucent" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ywr-FL-1Xa" secondAttribute="bottom" constant="8" id="BrO-kd-fqm"/>
                             <constraint firstAttribute="trailing" secondItem="Toc-rc-7qC" secondAttribute="trailing" constant="32" id="FTl-3J-qD0"/>
@@ -81,44 +76,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="160" y="272"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="3Ak-rK-IVe">
-            <objects>
-                <viewController id="RN9-OF-jxg" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="smZ-hd-j2a"/>
-                        <viewControllerLayoutGuide type="bottom" id="uUr-xe-yEQ"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eiD-bw-OBE">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4NV-vV-U4K" customClass="FilterBar" customModule="Filter_Bar_Demo" customModuleProvider="target">
-                                <rect key="frame" x="-1" y="28" width="602" height="44"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4NV-vV-U4K" firstAttribute="top" secondItem="smZ-hd-j2a" secondAttribute="bottom" constant="8" id="aeU-eO-mqL"/>
-                            <constraint firstAttribute="centerX" secondItem="4NV-vV-U4K" secondAttribute="centerX" constant="-299" id="yXf-vD-t98"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="yXf-vD-t98"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LMf-Qd-eT5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1586" y="430"/>
         </scene>
     </scenes>
 </document>
