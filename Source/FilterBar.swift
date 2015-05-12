@@ -62,17 +62,6 @@ import UIKit
         }
     }
     
-    
-    // MARK: - Border Color
-    
-    @IBInspectable var borderColor : UIColor = UIColor.blackColor() {
-        didSet {
-            applyColor()
-        }
-    }
-    
-
-    
     //  MARK: - Buttons and Titles
     
     var buttons : Array<UIButton> = Array()
@@ -93,25 +82,32 @@ import UIKit
     //
     
     init() {
-        
-        self.titles = ["Button A", "Button B", "Button C"]
         super.init(frame: CGRectZero)
-        self.tintColor = UIColor.blackColor()
-        self.barTintColor = UIColor.whiteColor()
+        
+        self.initializeDefaults()
     }
     
     required init(coder aDecoder: NSCoder) {
-        self.titles = ["Button A", "Button B", "Button C"]
-        super.init(coder: aDecoder)
-        self.tintColor = UIColor.blackColor()
-        self.barTintColor = UIColor.whiteColor()
+       super.init(coder: aDecoder)
+
+        self.initializeDefaults()
     }
     
     override init(frame: CGRect) {
-        self.titles = ["Button A", "Button B", "Button C"]
         super.init(frame: CGRectZero)
+        
+        self.initializeDefaults()
+    }
+    
+    //
+    //  MARK: - Initialize Defaults
+    //
+    
+    func initializeDefaults() {
+        self.titles = ["Segment A", "Segment B", "Segment C"]
         self.tintColor = UIColor.blackColor()
         self.barTintColor = UIColor.whiteColor()
+        self.translucent = true
     }
     
     //
