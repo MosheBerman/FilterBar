@@ -133,7 +133,8 @@ import UIKit
     
     //
     //  After we've moved to the superview,
-    //  we need to
+    //  we need to position the FilterBar in 
+    //  the superview.
     //
     
     override func didMoveToSuperview() {
