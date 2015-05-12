@@ -72,6 +72,7 @@
 		46E9222C1AFBFBD7008C9491 = {
 			isa = PBXGroup;
 			children = (
+				46E9223E1AFBFBD7008C9491 /* Main.storyboard */,
 				46E922371AFBFBD7008C9491 /* Filter Bar Demo */,
 				46E9224D1AFBFBD7008C9491 /* Filter Bar DemoTests */,
 				46E922361AFBFBD7008C9491 /* Products */,
@@ -94,7 +95,6 @@
 				46E9223C1AFBFBD7008C9491 /* ViewController.swift */,
 				461D5D4F1AFFE7AF00C71DE4 /* FilterBar */,
 				46F971321AFC2991000EA4A9 /* Rounded Label */,
-				46E9223E1AFBFBD7008C9491 /* Main.storyboard */,
 				46E922411AFBFBD7008C9491 /* Images.xcassets */,
 				46E922431AFBFBD7008C9491 /* LaunchScreen.xib */,
 				46E922381AFBFBD7008C9491 /* Supporting Files */,
@@ -267,6 +267,7 @@
 				46E9223F1AFBFBD7008C9491 /* Base */,
 			);
 			name = Main.storyboard;
+			path = "Filter Bar Demo";
 			sourceTree = "<group>";
 		};
 		46E922431AFBFBD7008C9491 /* LaunchScreen.xib */ = {
