@@ -483,6 +483,7 @@ import UIKit
             self._whiteOverlay.backgroundColor = UIColor(white: 0.97, alpha: 0.5)
             self._whiteOverlay.opaque = false
             self.opaque = false
+            self.backgroundColor = UIColor.clearColor()
         }
         
     }
