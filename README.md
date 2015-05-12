@@ -56,7 +56,7 @@ FilterBar Tint Color
         
 This will cause the filter bar to have a white background. 
 
-**Note:**Previously, `barTintColor` was named `color`. The `color` property is deprecated. Setting the `color` property now sets the `barTintColor` property, but in future versions, `color` will be removed.
+**Note:** Previously, `barTintColor` was named `color`. The `color` property is deprecated. Setting the `color` property now sets the `barTintColor` property, but in future versions, `color` will be removed.
 
 FilterBar Translucency
 ---
@@ -102,9 +102,12 @@ Interface Builder Support:
 ---
 FilterBar supports Interface Builder in several ways. You can set the color of the bar, and FilterBar will render a preview in interface builder.
 
-![IB](https://github.com/MosheBerman/FilterBar/raw/master/InterfaceBuilder.png)
-
 To use FilterBar with Interface Builder, drag a UIView out on to your view (controller) and change the class to FilterBar. 
+
+How it works:
+---
+
+Take a look at [this post on Stack Overflow](http://stackoverflow.com/questions/30154753/matching-the-color-of-the-transparent-navbar/30154915#30154915) for an in-depth explanation of how I built this control.
 
 License:
 ---
