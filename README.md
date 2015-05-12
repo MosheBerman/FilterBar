@@ -2,19 +2,22 @@
 
 # FilterBar
 
-FilterBar is a fancy implementation of UISegmentedControl that is designed to look good under navigation bars, search controllers, and really anywhere else in your app. 
+What happens if you combine UINavigationBar and UISegmentedControl? FilterBar.
 
-It's designed to stretch across its superview and handle segment layout nicely.
+FilterBar is a fancy implementation of UISegmentedControl that is designed to look good beneath navigation bars, search fields, and really anywhere else in your app. 
+
+It's designed to stretch across its superview and handle segment layout nicely. 
 
 Getting Started:
 ---
-Add `FilterBar.swift` to your project. 
 
-Or, with CocoaPods:
+With CocoaPods:
 
-    pod 'FilterBar', '~>1.0.5'
+    pod 'FilterBar', '~>2.0.0'
 
-FilterBar uses Swift, so Cocoapods requires iOS 8.0 or higher.
+Cocoapods requires iOS 8.0 or higher. 
+
+If you're supporting iOS 7, or if you prefer, you can just drop `FilterBar.swift` to your project. 
 
 Creating a FilterBar:
 ---
@@ -45,17 +48,18 @@ Every FilterBar issued from the factory calls `setTranslatesAutoresizingMaskInto
 
 Coloring the FilterBar:
 --- 
-FilterBar contains two properties for controlling appearance. The `color` property sets the text color and the background color. 
+FilterBar contains two properties for controlling appearance. The `barTintColor` property sets the text color and the background color. 
 
         //  Color the filter bar
-        filter.color = UIColor.whiteColor()
+        filter.barTintColor = UIColor.whiteColor()
         
-This will cause the filter bar to have a white. Personally, I think a black or white color works well for most cases, because the background color will bleed through. FilterBar applies the color with an opacity of 0.1 as the `backgroundColor`.
-        
-        //	The border is going to be black.
-        filter.borderColor = UIColor.blackColor()
+This will cause the filter bar to have a white background. 
 
-The FilterBar `borderColor` is set to 0.5 opacity before being applied, to approximate how translucent navigation bars shade themselves. 
+Previosly, `barTintColor` was named `color`. The `color` property is deprecated. Setting the `color` property now sets the `barTintColor` property, but in future versions, `color` will be removed.
+
+
+
+**Note:** The previous version of FilterBar allowed the setting of a borderColor property. This is no longer supported, because FilterBar now mimics the appearance of UINavigationBar much more closely. Setting `borderColor` now does nothing.
 
 Getting Events:
 ---
