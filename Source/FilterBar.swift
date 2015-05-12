@@ -78,6 +78,18 @@ import UIKit
     }
     
     //
+    //  MARK: - Deprecated Appearance
+    //
+    
+    @availability(iOS, introduced=1.0.0, deprecated=2.0.0, renamed="barTintColor") var color : UIColor = UIColor.whiteColor() {
+        didSet(newColor) {
+            self.barTintColor = newColor
+        }
+    }
+    
+    @availability(iOS, introduced=1.0.0, deprecated=2.0.0) var borderColor : UIColor = UIColor.blackColor()
+    
+    //
     //  MARK: - Internal Overlays
     //
     
