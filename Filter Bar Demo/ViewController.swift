@@ -16,25 +16,32 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        //
+        //  Define a blue.
+        //
+        
+        let blue : UIColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
+        
+        //
+        //  Wire up the filter bar that was create in Interface Builder
+        //
         
         filterBar.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
         
         //  This sets the titles of the filter bar.
         filterBar.titles = ["Aragorn", "Bilbo", "Ceorl"]    // Lord of the Rings!
-        
-        //  This sets the color of the filter bar
-        filterBar.color = UIColor.whiteColor()
+
         
         //
         //  This is some extra styling.
         //
         
         //  Style the navigation controller.
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
+        self.navigationController?.navigationBar.barTintColor = blue
         
         //  Set the bakground color of the view.
-        self.view.backgroundColor = UIColor(red: 0.13, green: 0.20, blue: 0.62, alpha: 1.00)
+        self.view.backgroundColor = blue
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
 
@@ -47,9 +54,11 @@ class ViewController: UIViewController {
         //  Add button titles
         filter.titles = ["Albus", "Bathilda", "Charlie", "Harry"]    // Harry Potter!
         
-        //  Color the filter bar
-        filter.color = UIColor.whiteColor()
-        filter.borderColor = UIColor.blackColor()
+        //  Color the text
+        filter.tintColor = UIColor.whiteColor()
+        
+        //  Tint the filter bar
+        filter.barTintColor = blue
         
         //  Install the filter
         self.view.addSubview(filter)
@@ -61,6 +70,14 @@ class ViewController: UIViewController {
         // Handle event changes
         filter.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
         
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let bar : UINavigationBar = (self.navigationController?.navigationBar)!
+        
+        self.searchHierarchyForBorder(bar)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,5 +97,18 @@ class ViewController: UIViewController {
         
     }
 
+    func searchHierarchyForBorder(rootView:UIView) {
+        
+        if rootView.layer.borderWidth > 0.0 {
+            NSLog("Found border on view: %@, %@", rootView, rootView.self)
+        }
+        
+        let subviews : Array<UIView> = rootView.subviews as! Array<UIView>
+        
+        for view : UIView in subviews {
+            searchHierarchyForBorder(view)
+        }
+    }
+    
 }
 
