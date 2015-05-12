@@ -46,20 +46,41 @@ FilterBar uses an intrinsic size and a pair of layout constraints to ensure that
         
 Every FilterBar issued from the factory calls `setTranslatesAutoresizingMaskIntoConstraints` on itself so you don't have to.
 
-Coloring the FilterBar:
---- 
-FilterBar contains two properties for controlling appearance. The `barTintColor` property sets the text color and the background color. 
+
+FilterBar Tint Color
+---
+ To set the tint of the FilterBar, use `barTintColor`. For example:
 
         //  Color the filter bar
         filter.barTintColor = UIColor.whiteColor()
         
 This will cause the filter bar to have a white background. 
 
-Previosly, `barTintColor` was named `color`. The `color` property is deprecated. Setting the `color` property now sets the `barTintColor` property, but in future versions, `color` will be removed.
+**Note:**Previously, `barTintColor` was named `color`. The `color` property is deprecated. Setting the `color` property now sets the `barTintColor` property, but in future versions, `color` will be removed.
 
+FilterBar Translucency
+---
 
+FilterBar can be opaque or translucent. Turn translucency on or off with the `translucent` property.
 
-**Note:** The previous version of FilterBar allowed the setting of a borderColor property. This is no longer supported, because FilterBar now mimics the appearance of UINavigationBar much more closely. Setting `borderColor` now does nothing.
+        //  Enable translucency
+        filter.translucent = true
+
+Segment Text Color
+---
+To set the color of the text in the FilterBar's segments, use the `tintColor` property.
+
+        //  Color the text
+        filter.tintColor = UIColor.whiteColor()
+
+Border Color
+---
+
+FilterBar supplies a 0.5 point border that's black and transparent.
+
+The previous version of FilterBar allowed the setting of a borderColor property. This is no longer supported, because FilterBar now mimics the appearance of UINavigationBar much more closely. 
+
+The `borderColor` property is deprecated, and setting it does nothing.
 
 Getting Events:
 ---
