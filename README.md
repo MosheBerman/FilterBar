@@ -15,7 +15,7 @@ With CocoaPods:
 
     pod 'FilterBar', '~>2.0.0'
 
-Cocoapods requires iOS 8.0 or higher. 
+CocoaPods requires iOS 8.0 or higher. 
 
 If you're supporting iOS 7, or if you prefer, you can just drop `FilterBar.swift` to your project. 
 
