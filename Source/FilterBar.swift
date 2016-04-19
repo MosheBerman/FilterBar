@@ -118,8 +118,8 @@ import UIKit
         
         
         //  Border colors
-        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()
-        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])
+        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()!
+        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])!
         
         self.layer.borderColor = color
         self.layer.borderWidth = 0.5
@@ -448,10 +448,8 @@ import UIKit
         let constraints : Array = self.constraints as Array
         
         for c in constraints {
-            if let testConstraint = c as? NSLayoutConstraint {
-                if testConstraint.identifier == identifier {
-                    constraint = testConstraint
-                }
+            if c.identifier == identifier {
+                constraint = c
             }
         }
         
