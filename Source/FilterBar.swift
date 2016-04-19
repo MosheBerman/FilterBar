@@ -55,7 +55,7 @@ import UIKit
     
     //  Tint Color
     
-    @IBInspectable override var tintColor : UIColor! {
+    @IBInspectable override dynamic var tintColor : UIColor! {
         didSet {
             applyColor()
         }
@@ -63,7 +63,7 @@ import UIKit
     
     //  Bar Color
     
-    @IBInspectable var barTintColor : UIColor = UIColor.whiteColor() {
+    @IBInspectable dynamic var barTintColor : UIColor = UIColor.whiteColor() {
         didSet {
             applyColor()
         }
@@ -71,24 +71,12 @@ import UIKit
     
     //  Translucency
     
-    @IBInspectable var translucent : Bool = true {
+    @IBInspectable dynamic var translucent : Bool = true {
         didSet {
             applyColor()
         }
     }
-    
-    //
-    //  MARK: - Deprecated Appearance
-    //
-    
-    @availability(iOS, introduced=1.0.0, deprecated=2.0.0, renamed="barTintColor") var color : UIColor = UIColor.whiteColor() {
-        didSet(newColor) {
-            self.barTintColor = newColor
-        }
-    }
-    
-    @availability(iOS, introduced=1.0.0, deprecated=2.0.0) var borderColor : UIColor = UIColor.blackColor()
-    
+
     //
     //  MARK: - Internal Overlays
     //
@@ -106,7 +94,7 @@ import UIKit
         self.initializeDefaults()
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initializeDefaults()
@@ -152,8 +140,8 @@ import UIKit
     override func willMoveToSuperview(newSuperview: UIView?) {
         super.willMoveToSuperview(newSuperview)
         
-        self.setTranslatesAutoresizingMaskIntoConstraints(false)
-        self._colorOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
         
         self.applyColor()
     }
@@ -202,14 +190,14 @@ import UIKit
         //  Install a white overlay
         //
         
-        let containsWhiteView : Bool = contains(self.subviews as! Array<UIView>, self._whiteOverlay)
+        let containsWhiteView : Bool = (self.subviews ).contains(self._whiteOverlay)
         
         if !containsWhiteView {
             if self.translucent {
                 self.layoutWhiteOverlayView()
             }
             else {
-                self.removeConstraints(_whiteOverlay.constraints())
+                self.removeConstraints(_whiteOverlay.constraints)
                 _whiteOverlay.removeFromSuperview()
             }
         }
@@ -218,14 +206,14 @@ import UIKit
         //  Add the color view
         //
         
-        let containsColorView : Bool = contains(self.subviews as! Array<UIView>, self._colorOverlay)
+        let containsColorView : Bool = (self.subviews ).contains(self._colorOverlay)
         
         if !containsColorView {
             if self.translucent {
                 self.layoutColorOverlayView()
             }
             else {
-                self.removeConstraints(_colorOverlay.constraints())
+                self.removeConstraints(_colorOverlay.constraints)
                 _colorOverlay.removeFromSuperview()
             }
         }
@@ -246,7 +234,7 @@ import UIKit
         
         self.addSubview(self._colorOverlay)
         
-        self._colorOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
         
         let x : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let y : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
@@ -266,7 +254,7 @@ import UIKit
         
         self.addSubview(self._whiteOverlay)
         
-        self._whiteOverlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+        self._whiteOverlay.translatesAutoresizingMaskIntoConstraints = false
         
         let x : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
         let y : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
@@ -300,7 +288,7 @@ import UIKit
             let buttonTitle : String = title as String
             
             //  Create a button
-            let button : UIButton = UIButton.buttonWithType(.Custom) as! UIButton
+            let button : UIButton = UIButton(type: .Custom)
             
             //  Set the button title & colors
             button.setTitle(buttonTitle, forState: .Normal)
@@ -312,7 +300,7 @@ import UIKit
             button.addTarget(self, action: "buttonWasTapped:", forControlEvents: .TouchUpInside)
             
             //  Prepare the button for constraints
-            button.setTranslatesAutoresizingMaskIntoConstraints(false)
+            button.translatesAutoresizingMaskIntoConstraints = false
             
             //  Grab the previous button to anchor the new button against.
             var leftItem : AnyObject? = self.buttons.last;
@@ -457,7 +445,7 @@ import UIKit
         
         var constraint : NSLayoutConstraint? = nil
         
-        let constraints : Array = self.constraints() as Array
+        let constraints : Array = self.constraints as Array
         
         for c in constraints {
             if let testConstraint = c as? NSLayoutConstraint {

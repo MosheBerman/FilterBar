@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         //
         
         //  Style the navigation controller.
-        self.navigationController?.navigationBar.barTintColor = blue
+        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
         
         //  Set the bakground color of the view.
         self.view.backgroundColor = blue
@@ -106,7 +106,7 @@ class ViewController: UIViewController {
             NSLog("Found border on view: %@, %@", rootView, rootView.self)
         }
         
-        let subviews : Array<UIView> = rootView.subviews as! Array<UIView>
+        let subviews : Array<UIView> = rootView.subviews 
         
         for view : UIView in subviews {
             searchHierarchyForBorder(view)
