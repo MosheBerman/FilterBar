@@ -3,7 +3,7 @@
 //  Filter Bar Demo
 //
 //  Created by Moshe Berman on 5/7/15.
-//  Copyright (c) 2015 Moshe. All rights reserved.
+//  Copyright (c) 2016 Moshe Berman. All rights reserved.
 //
 
 import UIKit
