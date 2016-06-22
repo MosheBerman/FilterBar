@@ -3,7 +3,7 @@
 //  Filter Bar Demo
 //
 //  Created by Moshe Berman on 5/7/15.
-//  Copyright (c) 2015 Moshe. All rights reserved.
+//  Copyright (c) 2016 Moshe Berman. All rights reserved.
 //
 
 import UIKit
@@ -297,7 +297,7 @@ import UIKit
             button.titleLabel?.font = self.buttonFont
             
             //  Wire up the button to an action
-            button.addTarget(self, action: "buttonWasTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FilterBar.buttonWasTapped(_:)), forControlEvents: .TouchUpInside)
             
             //  Prepare the button for constraints
             button.translatesAutoresizingMaskIntoConstraints = false
@@ -405,7 +405,7 @@ import UIKit
         
         var index : NSInteger = -1
         
-        for var i = 0; i < self.titles.count; ++i {
+        for (var i = 0; i < self.titles.count; i += 1) {
             if button.isEqual(self.buttons[i]) {
                 index = i
                 break

@@ -3,7 +3,7 @@
 //  Filter Bar Demo
 //
 //  Created by Moshe Berman on 5/7/15.
-//  Copyright (c) 2015 Moshe Berman. All rights reserved.
+//  Copyright (c) 2016 Moshe Berman. All rights reserved.
 //
 
 import UIKit
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         //  Wire up the filter bar that was create in Interface Builder
         //
         
-        filterBar.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        filterBar.addTarget(self, action: #selector(ViewController.segmentChanged(_:)), forControlEvents: .ValueChanged)
         
         //  This sets the titles of the filter bar.
         filterBar.titles = ["Aragorn", "Bilbo", "Ceorl"]    // Lord of the Rings!
@@ -71,7 +71,7 @@ class ViewController: UIViewController {
         self.view.addConstraint(topConstraint)
         
         // Handle event changes
-        filter.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        filter.addTarget(self, action: #selector(ViewController.segmentChanged(_:)), forControlEvents: .ValueChanged)
         
     }
     
