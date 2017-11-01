@@ -12,9 +12,9 @@
 		46E9223D1AFBFBD7008C9491 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E9223C1AFBFBD7008C9491 /* ViewController.swift */; };
 		46E922401AFBFBD7008C9491 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46E9223E1AFBFBD7008C9491 /* Main.storyboard */; };
 		46E922421AFBFBD7008C9491 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46E922411AFBFBD7008C9491 /* Images.xcassets */; };
-		46E922451AFBFBD7008C9491 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 46E922431AFBFBD7008C9491 /* LaunchScreen.xib */; };
 		46E922511AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E922501AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift */; };
 		46F971311AFC298E000EA4A9 /* RoundedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F971301AFC298E000EA4A9 /* RoundedLabel.swift */; };
+		F5A72B871FA998B400C41D0A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5A72B851FA998B400C41D0A /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,11 +35,11 @@
 		46E9223C1AFBFBD7008C9491 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		46E9223F1AFBFBD7008C9491 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46E922411AFBFBD7008C9491 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		46E922441AFBFBD7008C9491 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		46E9224A1AFBFBD7008C9491 /* Filter Bar DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Filter Bar DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46E9224F1AFBFBD7008C9491 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46E922501AFBFBD7008C9491 /* Filter_Bar_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter_Bar_DemoTests.swift; sourceTree = "<group>"; };
 		46F971301AFC298E000EA4A9 /* RoundedLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RoundedLabel.swift; path = RoundedLabel/RoundedLabel.swift; sourceTree = "<group>"; };
+		F5A72B861FA998B400C41D0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Filter Bar Demo/Base.lproj/Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				46E9223E1AFBFBD7008C9491 /* Main.storyboard */,
+				F5A72B851FA998B400C41D0A /* Launch Screen.storyboard */,
 				46E922371AFBFBD7008C9491 /* Filter Bar Demo */,
 				46E9224D1AFBFBD7008C9491 /* Filter Bar DemoTests */,
 				46E922361AFBFBD7008C9491 /* Products */,
@@ -96,7 +97,6 @@
 				461D5D4F1AFFE7AF00C71DE4 /* FilterBar */,
 				46F971321AFC2991000EA4A9 /* Rounded Label */,
 				46E922411AFBFBD7008C9491 /* Images.xcassets */,
-				46E922431AFBFBD7008C9491 /* LaunchScreen.xib */,
 				46E922381AFBFBD7008C9491 /* Supporting Files */,
 			);
 			path = "Filter Bar Demo";
@@ -221,7 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46E922401AFBFBD7008C9491 /* Main.storyboard in Resources */,
-				46E922451AFBFBD7008C9491 /* LaunchScreen.xib in Resources */,
+				F5A72B871FA998B400C41D0A /* Launch Screen.storyboard in Resources */,
 				46E922421AFBFBD7008C9491 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,12 +275,12 @@
 			path = "Filter Bar Demo";
 			sourceTree = "<group>";
 		};
-		46E922431AFBFBD7008C9491 /* LaunchScreen.xib */ = {
+		F5A72B851FA998B400C41D0A /* Launch Screen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				46E922441AFBFBD7008C9491 /* Base */,
+				F5A72B861FA998B400C41D0A /* Base */,
 			);
-			name = LaunchScreen.xib;
+			name = "Launch Screen.storyboard";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
