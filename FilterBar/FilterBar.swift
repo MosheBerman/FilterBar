@@ -140,8 +140,10 @@ import UIKit
     override public func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
+        #if !TARGET_INTERFACE_BUILDER
         self.translatesAutoresizingMaskIntoConstraints = false
         self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
+        #endif
         
         self.applyColor()
     }
@@ -233,8 +235,9 @@ import UIKit
     func layoutColorOverlayView() {
         
         self.addSubview(self._colorOverlay)
-        
+        #if !TARGET_INTERFACE_BUILDER
         self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
+        #endif
         
         let x : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
         let y : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
@@ -346,7 +349,7 @@ import UIKit
     
     override public var intrinsicContentSize : CGSize {
         
-        var intrinsicWidth : CGFloat = UIScreen.main.bounds.width + 2.0
+        var intrinsicWidth : CGFloat = UIViewNoIntrinsicMetric
         
         if let width : CGFloat = self.superview?.bounds.width {
             intrinsicWidth = width + 2.0

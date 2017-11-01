@@ -37,7 +37,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap a Segment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toc-rc-7qC" customClass="RoundedLabel" customModule="Filter_Bar_Demo" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Tap a Segment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Toc-rc-7qC" customClass="RoundedLabel" customModule="Filter_Bar_Demo" customModuleProvider="target">
                                 <rect key="frame" x="32" y="317.5" width="311" height="32"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -47,9 +47,12 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ywr-FL-1Xa" customClass="FilterBar" customModule="FilterBar">
-                                <rect key="frame" x="-1" y="548" width="602" height="44"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywr-FL-1Xa" customClass="FilterBar" customModule="FilterBar">
+                                <rect key="frame" x="0.0" y="615" width="375" height="44"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" placeholder="YES" id="pwu-mS-kSY"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="selectedSegmentIndex">
                                         <integer key="value" value="1"/>
@@ -62,9 +65,11 @@
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ywr-FL-1Xa" secondAttribute="bottom" constant="8" id="BrO-kd-fqm"/>
                             <constraint firstAttribute="trailing" secondItem="Toc-rc-7qC" secondAttribute="trailing" constant="32" id="FTl-3J-qD0"/>
+                            <constraint firstItem="ywr-FL-1Xa" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" placeholder="YES" id="fpb-ft-WjW"/>
                             <constraint firstAttribute="centerX" secondItem="Toc-rc-7qC" secondAttribute="centerX" id="g3J-QA-dAi"/>
                             <constraint firstAttribute="centerY" secondItem="Toc-rc-7qC" secondAttribute="centerY" id="gUZ-sX-95d"/>
                             <constraint firstItem="Toc-rc-7qC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="gaC-A8-xO9"/>
+                            <constraint firstItem="ywr-FL-1Xa" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" placeholder="YES" id="pSd-OQ-spL"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
