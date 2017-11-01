@@ -8,11 +8,11 @@
 
 import UIKit
 
-@IBDesignable class FilterBar : UIControl {
+@IBDesignable public class FilterBar : UIControl {
     
     //  MARK: - Segments
     
-    @IBInspectable var selectedSegmentIndex : NSInteger = 0 {
+    @IBInspectable public var selectedSegmentIndex : NSInteger = 0 {
         
         didSet {
             
@@ -34,11 +34,11 @@ import UIKit
     
     //  Buttons
     
-    var buttons : Array<UIButton> = Array()
+    public var buttons : Array<UIButton> = Array()
     
     //  Titles
     
-    var titles : Array<String> = [] {
+    public var titles : Array<String> = [] {
         didSet {
             self.layoutButtons()
         }
@@ -50,12 +50,12 @@ import UIKit
     
     //  Fonts 
     
-    let buttonFont : UIFont? = UIFont.systemFont(ofSize: 14.0)
-    let buttonSelectedFont : UIFont? = UIFont.boldSystemFont(ofSize: 16.0)
+    public let buttonFont : UIFont? = UIFont.systemFont(ofSize: 14.0)
+    public let buttonSelectedFont : UIFont? = UIFont.boldSystemFont(ofSize: 16.0)
     
     //  Tint Color
     
-    @IBInspectable override dynamic var tintColor : UIColor! {
+    @IBInspectable override dynamic public var tintColor : UIColor! {
         didSet {
             applyColor()
         }
@@ -63,7 +63,7 @@ import UIKit
     
     //  Bar Color
     
-    @IBInspectable dynamic var barTintColor : UIColor = UIColor.white {
+    @IBInspectable dynamic public var barTintColor : UIColor = UIColor.white {
         didSet {
             applyColor()
         }
@@ -71,7 +71,7 @@ import UIKit
     
     //  Translucency
     
-    @IBInspectable dynamic var translucent : Bool = true {
+    @IBInspectable dynamic public var translucent : Bool = true {
         didSet {
             applyColor()
         }
@@ -88,19 +88,19 @@ import UIKit
     //  MARK: - Initializers
     //
     
-    init() {
+    public init() {
         super.init(frame: CGRect.zero)
         
         self.initializeDefaults()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
         self.initializeDefaults()
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: CGRect.zero)
         
         self.initializeDefaults()
@@ -110,7 +110,7 @@ import UIKit
     //  MARK: - Initialize Defaults
     //
     
-    func initializeDefaults() {
+    private func initializeDefaults() {
         self.titles = ["Segment A", "Segment B", "Segment C"]
         self.tintColor = UIColor.black
         self.barTintColor = UIColor.white
@@ -137,7 +137,7 @@ import UIKit
     //  2. Apply the color settings.
     //
     
-    override func willMove(toSuperview newSuperview: UIView?) {
+    override public func willMove(toSuperview newSuperview: UIView?) {
         super.willMove(toSuperview: newSuperview)
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -152,7 +152,7 @@ import UIKit
     //  the superview.
     //
     
-    override func didMoveToSuperview() {
+    override public func didMoveToSuperview() {
         
         super.didMoveToSuperview()
         
@@ -184,7 +184,7 @@ import UIKit
     //  MARK: - Layout
     //
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         
         //
         //  Install a white overlay
@@ -206,7 +206,7 @@ import UIKit
         //  Add the color view
         //
         
-        let containsColorView : Bool = (self.subviews ).contains(self._colorOverlay)
+        let containsColorView : Bool = (self.subviews).contains(self._colorOverlay)
         
         if !containsColorView {
             if self.translucent {
@@ -344,7 +344,7 @@ import UIKit
     //  just beyond either side of its superview.
     //
     
-    override var intrinsicContentSize : CGSize {
+    override public var intrinsicContentSize : CGSize {
         
         var intrinsicWidth : CGFloat = UIScreen.main.bounds.width + 2.0
         
@@ -359,7 +359,7 @@ import UIKit
     //  This method ensures that the FilterBar is always used with autolayout.
     //
     
-    override class var requiresConstraintBasedLayout : Bool  {
+    override public class var requiresConstraintBasedLayout : Bool  {
         return true
     }
     

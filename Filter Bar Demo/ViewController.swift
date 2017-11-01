@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FilterBar
 
 class ViewController: UIViewController {
 
