@@ -372,7 +372,7 @@ import UIKit
     //  index and updates the buttons.
     //
     
-    func buttonWasTapped(_ button:UIButton) {
+    @objc func buttonWasTapped(_ button:UIButton) {
         
         
         //  Set the index - this will cause the .ValueChanged to fire.

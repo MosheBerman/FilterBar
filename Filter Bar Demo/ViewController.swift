@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         //  Set the bakground color of the view.
         self.view.backgroundColor = blue
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
 
         //
         //  Create the filter
