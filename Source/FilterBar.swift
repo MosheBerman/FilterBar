@@ -28,7 +28,7 @@ import UIKit
                 selectedSegmentIndex = 0
             }
             
-            self.sendActionsForControlEvents(.ValueChanged)
+            self.sendActions(for: .valueChanged)
         }
     }
     
@@ -50,8 +50,8 @@ import UIKit
     
     //  Fonts 
     
-    let buttonFont : UIFont? = UIFont.systemFontOfSize(14.0)
-    let buttonSelectedFont : UIFont? = UIFont.boldSystemFontOfSize(16.0)
+    let buttonFont : UIFont? = UIFont.systemFont(ofSize: 14.0)
+    let buttonSelectedFont : UIFont? = UIFont.boldSystemFont(ofSize: 16.0)
     
     //  Tint Color
     
@@ -63,7 +63,7 @@ import UIKit
     
     //  Bar Color
     
-    @IBInspectable dynamic var barTintColor : UIColor = UIColor.whiteColor() {
+    @IBInspectable dynamic var barTintColor : UIColor = UIColor.white {
         didSet {
             applyColor()
         }
@@ -81,15 +81,15 @@ import UIKit
     //  MARK: - Internal Overlays
     //
     
-    private let _colorOverlay : UIView = UIView()
-    private let _whiteOverlay : UIView = UIView()
+    fileprivate let _colorOverlay : UIView = UIView()
+    fileprivate let _whiteOverlay : UIView = UIView()
     
     //
     //  MARK: - Initializers
     //
     
     init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         self.initializeDefaults()
     }
@@ -101,7 +101,7 @@ import UIKit
     }
     
     override init(frame: CGRect) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
         self.initializeDefaults()
     }
@@ -112,14 +112,14 @@ import UIKit
     
     func initializeDefaults() {
         self.titles = ["Segment A", "Segment B", "Segment C"]
-        self.tintColor = UIColor.blackColor()
-        self.barTintColor = UIColor.whiteColor()
+        self.tintColor = UIColor.black
+        self.barTintColor = UIColor.white
         self.translucent = true
         
         
         //  Border colors
-        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()!
-        let color : CGColor = CGColorCreate(space, [0.0, 0.0, 0.0, 0.3])!
+        let space : CGColorSpace = CGColorSpaceCreateDeviceRGB()
+        let color : CGColor = CGColor(colorSpace: space, components: [0.0, 0.0, 0.0, 0.3])!
         
         self.layer.borderColor = color
         self.layer.borderWidth = 0.5
@@ -137,8 +137,8 @@ import UIKit
     //  2. Apply the color settings.
     //
     
-    override func willMoveToSuperview(newSuperview: UIView?) {
-        super.willMoveToSuperview(newSuperview)
+    override func willMove(toSuperview newSuperview: UIView?) {
+        super.willMove(toSuperview: newSuperview)
         
         self.translatesAutoresizingMaskIntoConstraints = false
         self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
@@ -163,8 +163,8 @@ import UIKit
         if let superview = self.superview
         {
             
-            let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .CenterX, relatedBy: .Equal, toItem: superview, attribute: .CenterX, multiplier: 1.0, constant: 0);
-            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .Width, relatedBy: .Equal, toItem: superview, attribute: .Width, multiplier: 1.0, constant: 2.0) // 2 Points wider than the parent
+            let centerX : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .centerX, relatedBy: .equal, toItem: superview, attribute: .centerX, multiplier: 1.0, constant: 0);
+            let width : NSLayoutConstraint = NSLayoutConstraint(item: self, attribute: .width, relatedBy: .equal, toItem: superview, attribute: .width, multiplier: 1.0, constant: 2.0) // 2 Points wider than the parent
             
             superview.addConstraints([centerX, width])
         }
@@ -236,10 +236,10 @@ import UIKit
         
         self._colorOverlay.translatesAutoresizingMaskIntoConstraints = false
         
-        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
-        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: -1.0)
-        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1.0, constant: -1.0)
+        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._colorOverlay, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0)
         
         self.addConstraints([x, y, h, w])
         
@@ -256,10 +256,10 @@ import UIKit
         
         self._whiteOverlay.translatesAutoresizingMaskIntoConstraints = false
         
-        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterX, relatedBy: .Equal, toItem: self, attribute: .CenterX, multiplier: 1.0, constant: 0)
-        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
-        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: -1.0)
-        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .Width, relatedBy: .Equal, toItem: self, attribute: .Width, multiplier: 1.0, constant: 0)
+        let x : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1.0, constant: 0)
+        let y : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+        let h : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1.0, constant: -1.0)
+        let w : NSLayoutConstraint = NSLayoutConstraint(item: self._whiteOverlay, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1.0, constant: 0)
         
         self.addConstraints([x, y, h, w])
         
@@ -277,8 +277,8 @@ import UIKit
         
         //  Clean up the old buttons
         
-        self.buttons.map { $0.removeFromSuperview() }
-        self.buttons.removeAll(keepCapacity: false)
+        self.buttons.forEach { $0.removeFromSuperview() }
+        self.buttons.removeAll(keepingCapacity: false)
         
         //  If there are titles, create buttons and display them.
         
@@ -288,34 +288,34 @@ import UIKit
             let buttonTitle : String = title as String
             
             //  Create a button
-            let button : UIButton = UIButton(type: .Custom)
+            let button : UIButton = UIButton(type: .custom)
             
             //  Set the button title & colors
-            button.setTitle(buttonTitle, forState: .Normal)
-            button.setTitleColor(self.tintColor, forState: .Normal)
-            button.backgroundColor = UIColor.clearColor()
+            button.setTitle(buttonTitle, for: UIControlState())
+            button.setTitleColor(self.tintColor, for: UIControlState())
+            button.backgroundColor = UIColor.clear
             button.titleLabel?.font = self.buttonFont
             
             //  Wire up the button to an action
-            button.addTarget(self, action: "buttonWasTapped:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FilterBar.buttonWasTapped(_:)), for: .touchUpInside)
             
             //  Prepare the button for constraints
             button.translatesAutoresizingMaskIntoConstraints = false
             
             //  Grab the previous button to anchor the new button against.
             var leftItem : AnyObject? = self.buttons.last;
-            var attribute : NSLayoutAttribute = .Right
+            var attribute : NSLayoutAttribute = .right
             
             if leftItem == nil {
                 leftItem = self
-                attribute = .Left
+                attribute = .left
             }
             
             //  Create constraints
-            let x : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .Left, relatedBy: .Equal, toItem: leftItem, attribute: attribute, multiplier: 1.0, constant: 0)
-            let y : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .CenterY, relatedBy: .Equal, toItem: self, attribute: .CenterY, multiplier: 1.0, constant: 0)
-            let h : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 1.0, constant: 0)
-            let w : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .Width, relatedBy: .Equal, toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: self.buttonWidth())
+            let x : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .left, relatedBy: .equal, toItem: leftItem, attribute: attribute, multiplier: 1.0, constant: 0)
+            let y : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1.0, constant: 0)
+            let h : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 1.0, constant: 0)
+            let w : NSLayoutConstraint = NSLayoutConstraint(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: self.buttonWidth())
             
             //  Now add the button to the array and view hierarchy.
             self.buttons.append(button)
@@ -344,22 +344,22 @@ import UIKit
     //  just beyond either side of its superview.
     //
     
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         
-        var intrinsicWidth : CGFloat = CGRectGetWidth(UIScreen.mainScreen().bounds) + 2.0
+        var intrinsicWidth : CGFloat = UIScreen.main.bounds.width + 2.0
         
         if let width : CGFloat = self.superview?.bounds.width {
             intrinsicWidth = width + 2.0
         }
         
-        return CGSizeMake(intrinsicWidth, 44.0)
+        return CGSize(width: intrinsicWidth, height: 44.0)
     }
     
     //
     //  This method ensures that the FilterBar is always used with autolayout.
     //
     
-    override class func requiresConstraintBasedLayout() -> Bool  {
+    override class var requiresConstraintBasedLayout : Bool  {
         return true
     }
     
@@ -372,7 +372,7 @@ import UIKit
     //  index and updates the buttons.
     //
     
-    func buttonWasTapped(button:UIButton) {
+    func buttonWasTapped(_ button:UIButton) {
         
         
         //  Set the index - this will cause the .ValueChanged to fire.
@@ -401,11 +401,11 @@ import UIKit
     //  :returns: An integer representing the index.
     //
     
-    func indexForButton(button: UIButton) -> NSInteger {
+    func indexForButton(_ button: UIButton) -> NSInteger {
         
         var index : NSInteger = -1
         
-        for var i = 0; i < self.titles.count; ++i {
+        for i in 0...self.titles.count {
             if button.isEqual(self.buttons[i]) {
                 index = i
                 break
@@ -424,10 +424,10 @@ import UIKit
     
     func buttonWidth() -> CGFloat {
         
-        var width = CGRectGetWidth(self.bounds) / CGFloat(self.titles.count)
+        var width = self.bounds.width / CGFloat(self.titles.count)
         
         if self.titles.count == 0 {
-            width = CGRectGetWidth(self.bounds)
+            width = self.bounds.width
         }
         
         return width
@@ -441,7 +441,7 @@ import UIKit
     //  :return; The first layout constraint whose identifier is equal to the supplied identifier.
     //
     
-    func layoutConstraintWithIdentifier(identifier: String) -> NSLayoutConstraint? {
+    func layoutConstraintWithIdentifier(_ identifier: String) -> NSLayoutConstraint? {
         
         var constraint : NSLayoutConstraint? = nil
         
@@ -467,24 +467,24 @@ import UIKit
         //  If the bar is solid, apply the background color and cler the colorOverlay.
         if self.translucent == false {
             
-            self._colorOverlay.backgroundColor = UIColor.clearColor()
-            self._whiteOverlay.backgroundColor = UIColor.clearColor()
+            self._colorOverlay.backgroundColor = UIColor.clear
+            self._whiteOverlay.backgroundColor = UIColor.clear
             
             self.backgroundColor = self.barTintColor
-            self.opaque = true
+            self.isOpaque = true
         }
             
             //  Else, appropriately tint the color and white overlays and make the background clear.
         else {
             self._colorOverlay.alpha = 0.85
             self._colorOverlay.backgroundColor = self.barTintColor
-            self._colorOverlay.opaque = false
+            self._colorOverlay.isOpaque = false
             
             self._whiteOverlay.backgroundColor = UIColor(white: 0.97, alpha: 0.5)
-            self._whiteOverlay.opaque = false
+            self._whiteOverlay.isOpaque = false
             
-            self.opaque = false
-            self.backgroundColor = UIColor.clearColor()
+            self.isOpaque = false
+            self.backgroundColor = UIColor.clear
         }
         
     }

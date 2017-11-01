@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         //  Wire up the filter bar that was create in Interface Builder
         //
         
-        filterBar.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        filterBar.addTarget(self, action: #selector(ViewController.segmentChanged(_:)), for: .valueChanged)
         
         //  This sets the titles of the filter bar.
         filterBar.titles = ["Aragorn", "Bilbo", "Ceorl"]    // Lord of the Rings!
@@ -38,12 +38,12 @@ class ViewController: UIViewController {
         //
         
         //  Style the navigation controller.
-        self.navigationController?.navigationBar.barTintColor = UIColor.blackColor()
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
         
         //  Set the bakground color of the view.
         self.view.backgroundColor = blue
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.white]
 
         //
         //  Create the filter
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
         filter.titles = ["Albus", "Bathilda", "Charlie", "Harry"]    // Harry Potter!
         
         //  Color the text
-        filter.tintColor = UIColor.whiteColor()
+        filter.tintColor = UIColor.white
         
         //  Tint the filter bar
         filter.barTintColor = blue
@@ -67,15 +67,15 @@ class ViewController: UIViewController {
         self.view.addSubview(filter)
         
         //  Add a positioning constraint
-        let topConstraint : NSLayoutConstraint = NSLayoutConstraint(item: filter, attribute: .Top, relatedBy: .Equal, toItem: self.topLayoutGuide, attribute: .Bottom, multiplier: 1.0, constant: 8.0)
+        let topConstraint : NSLayoutConstraint = NSLayoutConstraint(item: filter, attribute: .top, relatedBy: .equal, toItem: self.topLayoutGuide, attribute: .bottom, multiplier: 1.0, constant: 8.0)
         self.view.addConstraint(topConstraint)
         
         // Handle event changes
-        filter.addTarget(self, action: "segmentChanged:", forControlEvents: .ValueChanged)
+        filter.addTarget(self, action: #selector(ViewController.segmentChanged(_:)), for: .valueChanged)
         
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         let bar : UINavigationBar = (self.navigationController?.navigationBar)!
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func segmentChanged(sender: AnyObject) {
+    @IBAction func segmentChanged(_ sender: AnyObject) {
         
         let filter : FilterBar = sender as! FilterBar
         
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
         
     }
 
-    func searchHierarchyForBorder(rootView:UIView) {
+    func searchHierarchyForBorder(_ rootView:UIView) {
         
         if rootView.layer.borderWidth > 0.0 {
             NSLog("Found border on view: %@, %@", rootView, rootView.self)

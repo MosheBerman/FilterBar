@@ -13,7 +13,7 @@ import UIKit
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        self.layer.cornerRadius = min(CGRectGetHeight(self.bounds), CGRectGetWidth(self.bounds)) / 2.0
+        self.layer.cornerRadius = min(self.bounds.height, self.bounds.width) / 2.0
         self.clipsToBounds = true
     }
     
