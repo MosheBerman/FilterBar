@@ -38,7 +38,7 @@ class ViewController: UIViewController {
         //
         
         //  Style the navigation controller.
-        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = blue
         
         //  Set the bakground color of the view.
         self.view.backgroundColor = blue
