@@ -13,11 +13,11 @@ Getting Started:
 
 With CocoaPods:
 
-    pod 'FilterBar', '~>2.0.0'
+    pod 'FilterBar', '~>5.0.0'
 
-CocoaPods requires iOS 8.0 or higher. 
+(Version 5.0.0 includes a release and shared Xcode scheme so Carthage may work. YMMV.)
 
-If you're supporting iOS 7, or if you prefer, you can just drop `FilterBar.swift` to your project. 
+If you're supporting older versions of iOS, or if you prefer, you can just drop `FilterBar.swift` to your project. 
 
 Creating a FilterBar:
 ---
